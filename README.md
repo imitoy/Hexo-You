@@ -1,6 +1,6 @@
 # Hexo You Theme
 
-A clean and minimal Hexo theme for your blog. Inspired by [Material You](https://m3.material.io/), [Materialize](https://github.com/Can1425/Hexo-Theme-Materialis). Based on [MDUI](https://mdui.org/).
+A clean and minimal Hexo theme for your blog, inspired by [Material You](https://m3.material.io/), [Materialize](https://github.com/Can1425/Hexo-Theme-Materialis) and based on [MDUI](https://mdui.org/).
 
 **This project is under developing.**
 
