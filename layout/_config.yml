@@ -1,0 +1,14 @@
+comment:
+  service: waline
+
+waline:
+  serverURL: your_server_url
+  lang: zh-CN
+
+giscus:
+  repo: your_repo
+
+sidebar:
+  name: "user"
+  slogen: "nonono"
+

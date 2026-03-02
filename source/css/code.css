@@ -1,0 +1,81 @@
+.content .highlight {
+    border: 2px solid rgb(var(--mdui-color-outline));
+    border-radius: 21px;
+    padding: 8px;
+    background-color: rgb(var(--mdui-color-surface-container-high));
+}
+
+.content .highlight .code {
+    font-family: "Maple Mono NF CN", "Fira Code", "Source Code Pro", Consolas, "Courier New", monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    background-color: rgb(var(--mdui-color-surface));
+    color: rgb(var(--mdui-color-on-surface));
+    padding: 0;
+    border-radius: 4px;
+}
+
+.content .highlight .code pre {
+    background-color: rgb(var(--mdui-color-surface-container-high));
+}
+
+.content .highlight .code span {
+    font-size: 16px;
+}
+
+/* 核心关键字与内置对象：使用主色 (Primary) */
+.content .highlight .code .keyword,
+.content .highlight .code .built_in,
+.content .highlight .code .type,
+.content .highlight .code .selector-tag {
+    color: rgb(var(--mdui-color-primary));
+    font-weight: bold;
+}
+
+/* 字符串与正则表达式：使用第三主色 (Tertiary) */
+.content .highlight .code .string,
+.content .highlight .code .regexp,
+.content .highlight .code .addition {
+    color: rgb(var(--mdui-color-tertiary));
+}
+
+/* 函数名、类名与属性：使用次色 (Secondary) */
+.content .highlight .code .title,
+.content .highlight .code .attr,
+.content .highlight .code .attribute,
+.content .highlight .code .function {
+    color: rgb(var(--mdui-color-secondary));
+}
+
+/* 数字与字面量：使用错误色或自定义强调色 (Error / Secondary) */
+/* 这里推荐使用 Secondary 的变体或 Error 以示区分 */
+.content .highlight .code .number,
+.content .highlight .code .literal {
+    color: rgb(var(--mdui-color-error));
+}
+
+/* 注释与预处理：使用外框颜色或次要文字颜色 (Outline / On Surface Variant) */
+.content .highlight .code .comment,
+.content .highlight .code .quote,
+.content .highlight .code .meta {
+    color: rgb(var(--mdui-color-outline));
+    font-style: italic;
+}
+
+/* 变量与符号：使用默认文本色 (On Surface) */
+.content .highlight .code .variable,
+.content .highlight .code .params,
+.content .highlight .code .operator {
+    color: rgb(var(--mdui-color-on-surface));
+}
+
+/* 标记/强调行：使用主色容器背景 */
+.content .highlight .code .marked {
+    background-color: rgba(var(--mdui-color-primary-container), 0.3);
+}
+
+code {
+    background-color: rgb(var(--mdui-color-secondary-container));
+    padding: 2px 4px;
+    border-radius: 8px;
+}

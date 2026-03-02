@@ -1,0 +1,23 @@
+<style>
+  @import url('/css/post-content.css');
+  @import url('/css/code.css');
+</style>
+
+<div class="content">
+  <mdui-card variant="elevated" class="post-header">
+    <% if(page.cover){ %>
+      <img src="<%= page.cover %>" alt="<%= page.title %>" class="post-header-cover post-header-meta"></image>
+    <% } %>
+    <div class="post-header-main">
+      <div class="post-header-title post-header-meta"><%= page.title %></div>
+      <div class="post-header-date post-header-meta">
+        <mdui-icon class="post-header-date-icon" src="/icon/calender.svg"></mdui-icon>
+        <span><%- date(page.date, "YYYY-MM-DD") %></span>
+      </div>
+    </div>
+  </mdui-card>
+  <%- page.content %>
+  <hr>
+</div>
+
+<script src="/js/code.js"></script>

@@ -1,0 +1,33 @@
+<style>
+  @import url('/css/index-header.css');
+  @import url('/css/post-card.css');
+</style>
+<mdui-card variant="filled" class="index-header-card">
+  <div class="index-header-title">Hexo You</div>
+  <div class="index-header-content">A hexo theme using Material You</div>
+</mdui-card>
+
+<% site.posts.forEach(function(post){ %>
+  <mdui-card variant="elevated" class="post-card">
+    <% if(post.cover){ %>
+      <img src="<%= post.cover %>" alt="<%= post.title %>" class="post-card-cover post-card-meta"></image>
+    <% } %>
+    <div class="post-card-main">
+      <div class="post-card-title post-card-meta"><%= post.title %></div>
+      <% if (post.cover) { %>
+        <div class="post-card-content post-card-meta"><%- truncate(strip_html(post.content), { length: 120 }) %></div>
+      <% } else { %>
+        <div class="post-card-content post-card-meta"><%- truncate(strip_html(post.content), { length: 200 }) %></div>
+      <% } %>
+      <div class="post-card-date post-card-meta">
+        <mdui-icon src="icon/calender.svg"></mdui-icon>
+        <span><%- date(post.date, "YYYY-MM-DD") %></span>
+      </div>
+      <mdui-card class="post-card-forward" href="<%= post.path %>">
+        <div class="post-card-forward-div">
+          <mdui-icon class="post-card-forward-icon" src="icon/arrow-forward.svg"></mdui-icon>
+        </div>
+      </mdui-card>
+    </div>
+  </mdui-card>
+<% }); %>

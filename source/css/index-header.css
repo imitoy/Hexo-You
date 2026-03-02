@@ -1,0 +1,19 @@
+.index-header-card {
+    width: 100%;
+    padding: 32px 32px 40px 32px;
+    margin-bottom: 32px;
+}
+
+.index-header-title {
+    font-size: 56px;
+    font-weight: 400;
+    margin-bottom: 32px;
+    color: rgb(var(--mdui-color-primary));
+}
+
+.index-header-content {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    color: var(--mdui-color-primary);
+}

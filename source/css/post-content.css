@@ -1,0 +1,130 @@
+.content .post-header {
+    margin-bottom: 32px;
+    background-color: rgb(var(--mdui-color-surface-container-highest));
+    width: 100%;
+    padding: 32px;
+}
+
+.content .post-header-title {
+    font-size: 56px;
+    font-weight: 400;
+    margin-bottom: 48px;
+    color: rgb(var(--mdui-color-primary));
+}
+
+.content .post-header-date {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.content .post-header-date .post-header-date-icon {
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin-right: 8px;
+    width: 16px;
+    height: 16px;
+}
+
+.content h1 {
+    font-size: 32px;
+    font-weight: 400;
+    margin-top: 56px;
+    margin-bottom: 16px;
+    color: rgb(var(--mdui-color-primary));
+}
+
+.content h2 {
+    font-size: 32px;
+    font-weight: 400;
+    margin-top: 40px;
+    margin-bottom: 16px;
+    color: rgb(var(--mdui-color-primary))
+}
+
+.content h3 {
+    font-size: 24px;
+    font-weight: 400;
+    margin-top: 24px;
+    margin-bottom: 16px;
+    color: rgb(var(--mdui-color-primary));
+}
+
+.content p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+
+.content a {
+    text-decoration: underline dashed;
+    color: rgb(var(--mdui-color-primary));
+    visited {
+        color: var(--mdui-color-primary);
+    }
+}
+
+.content > * {
+    margin: 16px 0 8px 0;
+}
+
+.content hr {
+    display: block;
+    border: none;
+    height: 8px; /* 与 SVG 高度一致 */
+    width: 100%;
+    margin: 32px 0;
+
+    /* 2. 注入 MDUI 动态颜色 */
+    background-color: rgb(var(--mdui-color-outline));
+
+    /* 3. 应用波浪遮罩 */
+    -webkit-mask-image: url('/icon/hr.svg');
+    mask-image: url('/icon/hr.svg');
+    
+    /* 4. 让波浪水平平铺 */
+    -webkit-mask-repeat: repeat-x;
+    mask-repeat: repeat-x;
+    
+    /* 5. 控制波浪的大小（可选） */
+    /*-webkit-mask-size: 20px 8px;*/
+    mask-size: auto 8px;
+}
+
+.content > table{
+    border-spacing: 0;
+    border: 1px solid rgb(var(--mdui-color-outline));
+    border-radius: 24px;
+    width: 100%;
+    color: inherit;
+    font-size: 14px;
+    overflow: hidden;
+}
+
+.content > table th {
+    padding: 8px 16px;
+    background-color: rgb(var(--mdui-color-surface-container-high));
+    border: 0;
+}
+
+.content > table th:not(:last-of-type) {
+    border-right: 1px solid rgb(var(--mdui-color-outline));
+}
+
+.content > table tr > th {
+    border-bottom: 1px solid rgb(var(--mdui-color-outline));
+}
+
+.content > table td {
+    border: 0;
+    padding: 8px 16px;
+}
+
+.content > table td:not(:last-of-type) {
+    border-right: 1px solid rgb(var(--mdui-color-outline));
+}
+
+.content > table tr:not(:last-of-type) > td {
+    border-bottom: 1px solid rgb(var(--mdui-color-outline));
+}

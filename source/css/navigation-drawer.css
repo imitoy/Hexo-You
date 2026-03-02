@@ -1,0 +1,29 @@
+.navigation-drawer {
+    animation: none;
+}
+
+.navigation-drawer-list {
+    margin: 0 8px 0 8px;
+    position: relative;
+}
+
+.navigation-drawer-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+}
+
+.navigation-drawer-header {
+    display: flex;
+    flex-direction: column;
+    padding: 32px 24px 32px 24px;
+    position: relative;
+}
+
+.navigation-drawer-avatar {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 16px;
+    background-color: rgb(var(--mdui-color-surface-lowest));
+}

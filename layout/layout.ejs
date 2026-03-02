@@ -1,0 +1,102 @@
+<!DOCTYPE>
+<html class="mdui-theme-auto">
+
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://unpkg.com/mdui@2/mdui.css">
+  <script src="https://unpkg.com/mdui@2/mdui.global.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script>
+  <script>
+
+const pjax = new Pjax({
+  selectors: [
+    "title",          // 更新页面标题
+    "#content-container" // 只更新这个 ID 里的内容
+  ],
+  cacheBust: false
+});
+
+// --- 动画处理 ---
+
+// 开始切换页面时：触发淡出
+document.addEventListener('pjax:send', function() {
+  document.getElementById('content-container').style.opacity = '0';
+  document.getElementById('content-container').style.transition = 'opacity 0.3s';
+});
+
+// 内容替换完成后：触发淡入
+document.addEventListener('pjax:complete', function() {
+  document.getElementById('content-container').style.opacity = '1';
+  
+  // 重要：由于是 AJAX 加载，新内容里的脚本（如图片懒加载、代码高亮）需要手动重新初始化
+  reInitializePlugins(); 
+});
+  </script>
+
+  <%- css('css/root.css') %>
+  <%- css('css/content-container.css') %>
+  <%- css('css/navigation-drawer.css') %>
+</head>
+
+<body>
+  <mdui-layout class="root">
+    <mdui-top-app-bar class="top-app-bar" scroll-behavior="elevate" scroll-target=".content-container">
+      <mdui-button-icon class="navigation-drawer-button" variant="text">
+        <mdui-icon src="/icon/menu.svg"></mdui-icon>
+      </mdui-button-icon>
+      <mdui-top-app-bar-title>Arch Linux's Blog</mdui-top-app-bar-title>
+      <div style="flex-grow: 1"></div>
+      <mdui-button-icon>
+        <mdui-icon src="/icon/search.svg"></mdui-icon>
+      </mdui-button-icon>
+    </mdui-top-app-bar>
+
+    <mdui-navigation-drawer class="navigation-drawer" close-on-overlay-click opened>
+      <div class="navigation-drawer-container">
+      <div class="navigation-drawer-header">
+        <mdui-avatar src="/img/avatar.png" class="navigation-drawer-avatar"></mdui-avatar>
+        <div class="navigation-drawer-header-title">Arch Linux</div>
+        <div class="navigation-drawer-header-subtitle">Arch is the best!</div>
+      </div>
+      <mdui-list class="navigation-drawer-list">
+        <mdui-list-item rounded href="/">
+          Home
+          <mdui-icon src="/icon/home.svg" slot="icon"></mdui-icon>
+        </mdui-list-item>
+        <mdui-list-item rounded href="/posts/">
+          Posts
+          <mdui-icon src="/icon/article.svg" slot="icon"></mdui-icon>
+        </mdui-list-item>
+        <mdui-list-item rounded href="/categories/">
+          Categories
+          <mdui-icon src="/icon/category.svg" slot="icon"></mdui-icon>
+        </mdui-list-item>
+        <mdui-list-item rounded href="/tags/">
+          Tags
+          <mdui-icon src="/icon/tag.svg" slot="icon"></mdui-icon>
+        </mdui-list-item>
+        <mdui-list-item rounded href="/about/">
+          About
+          <mdui-icon src="/icon/person.svg" slot="icon"></mdui-icon>
+        </mdui-list-item>
+        <mdui-list-item rounded href="/links/">
+          Links
+          <mdui-icon src="/icon/link.svg" slot="icon"></mdui-icon>
+        </mdui-list-item>
+      </mdui-list>
+      </div>
+    </mdui-navigation-drawer>
+
+    <mdui-layout-main class="layout-main">
+      <div class="content-container" id="content-container">
+        <%- body %>
+      </div>
+    </mdui-layout-main>
+  </mdui-layout>
+  <script src="/js/navigation-drawer.js"></script>
+  <script type="module" src="/js/color.js"></script>
+  <script type="module" src="/js/page.js"></script>
+</body>
+
+</html>
