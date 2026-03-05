@@ -1,0 +1,25 @@
+<style>
+  
+</style>
+
+<mdui-card variant="filled" class="header-card">
+  <div class="header-title">Categories</div>
+  <div class="header-content">All categories of the blog</div>
+</mdui-card>
+
+<div class="category-title">
+  <h2>分类：<%= page.category %></h2>
+</div>
+
+<div class="post-list">
+  <% site.posts.forEach(function(post){ %>
+    <article class="post-item">
+      <time><%= date(post.date, 'YYYY-MM-DD') %></time>
+      <a href="<%- url_for(post.path) %>">
+        <%= post.title %>
+      </a>
+    </article>
+  <% }) %>
+</div>
+
+<%- partial('_partial/pagination') %>

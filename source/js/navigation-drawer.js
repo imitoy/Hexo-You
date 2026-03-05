@@ -1,15 +1,22 @@
+const width = 900;
+
 const navigation = document.querySelector('.navigation-drawer');
 const button = document.querySelector('.navigation-drawer-button');
 
-button.addEventListener('click', () => {
-    if (navigation.open) {
-        navigation.open = false;
-    } else {
-        navigation.open = true;
-    }
-});
-
-// If screen width is more than 600px, open the navigation drawer by default
-if (window.innerWidth > 600) {
+function openNavigationDrawerForce() {
     navigation.open = true;
 }
+
+function freshNavigationDrawer() {
+    navigation.setAttribute('open', window.innerWidth > width);
+}
+
+button.addEventListener('click', () => openNavigationDrawerForce());
+
+freshNavigationDrawer();
+
+const resizeObserverNavigation = new ResizeObserver(entries => {
+  freshNavigationDrawer();
+});
+
+resizeObserverNavigation.observe(document.body);

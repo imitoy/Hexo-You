@@ -52,7 +52,7 @@ document.addEventListener('pjax:complete', function() {
       </mdui-button-icon>
     </mdui-top-app-bar>
 
-    <mdui-navigation-drawer class="navigation-drawer" close-on-overlay-click opened>
+    <mdui-navigation-drawer class="navigation-drawer" close-on-overlay-click open="true">
       <div class="navigation-drawer-container">
       <div class="navigation-drawer-header">
         <mdui-avatar src="/img/avatar.png" class="navigation-drawer-avatar"></mdui-avatar>
@@ -60,30 +60,30 @@ document.addEventListener('pjax:complete', function() {
         <div class="navigation-drawer-header-subtitle">Arch is the best!</div>
       </div>
       <mdui-list class="navigation-drawer-list">
-        <mdui-list-item rounded href="/">
+        <mdui-list-item rounded href="/" class="navigation-drawer-list-home">
           Home
           <mdui-icon src="/icon/home.svg" slot="icon"></mdui-icon>
         </mdui-list-item>
-        <mdui-list-item rounded href="/posts/">
+        <mdui-list-item rounded href="/posts/" class="navigation-drawer-list-posts">
           Posts
           <mdui-icon src="/icon/article.svg" slot="icon"></mdui-icon>
         </mdui-list-item>
-        <mdui-list-item rounded href="/categories/">
+        <!--mdui-list-item rounded href="/categories/">
           Categories
           <mdui-icon src="/icon/category.svg" slot="icon"></mdui-icon>
-        </mdui-list-item>
-        <mdui-list-item rounded href="/tags/">
+        </mdui-list-item-->
+        <mdui-list-item rounded href="/tags/" class="navigation-drawer-list-tags">
           Tags
           <mdui-icon src="/icon/tag.svg" slot="icon"></mdui-icon>
         </mdui-list-item>
-        <mdui-list-item rounded href="/about/">
+        <mdui-list-item rounded href="/about/" class="navigation-drawer-list-about">
           About
           <mdui-icon src="/icon/person.svg" slot="icon"></mdui-icon>
         </mdui-list-item>
-        <mdui-list-item rounded href="/links/">
+        <!--mdui-list-item rounded href="/links/" class="navigation-drawer-list-links">
           Links
           <mdui-icon src="/icon/link.svg" slot="icon"></mdui-icon>
-        </mdui-list-item>
+        </mdui-list-item-->
       </mdui-list>
       </div>
     </mdui-navigation-drawer>
@@ -96,7 +96,6 @@ document.addEventListener('pjax:complete', function() {
   </mdui-layout>
   <script src="/js/navigation-drawer.js"></script>
   <script type="module" src="/js/color.js"></script>
-  <script type="module" src="/js/page.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,29 @@
+<style>
+  @import url('/css/header-card.css');
+</style>
+
+<mdui-card variant="filled" class="header-card">
+  <div class="header-title">Posts</div>
+  <div class="header-content">All posts of the blog</div>
+</mdui-card>
+
+<% const archives = getArchivesByYear(); %>
+
+<% Object.keys(archives).reverse().forEach(year => { %>
+  <h1 class="posts-year"><%= year %></h1>
+  <mdui-list class="posts-list">
+    <% archives[year].forEach(post => { %>
+      <mdui-list-item href="<%- url_for(post.path) %>">
+        <div class="mdui-list-item-content">
+          <div class="mdui-list-item-title"><%= post.title %></div>
+          <div class="mdui-list-item-text"><%= post.date.format('YYYY-MM-DD') %></div>
+        </div>
+      </mdui-list-item>
+    <% }) %>
+  </mdui-list>
+<% }) %>
+
+<script>
+  const posts = document.querySelector('.navigation-drawer-list-posts');
+  posts.active = true;
+</script>

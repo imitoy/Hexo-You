@@ -1,0 +1,22 @@
+<style>
+  @import url('/css/post-content.css');
+  @import url('/css/code.css');
+  @import url('/css/about.css');
+</style>
+
+<div class="content">
+  <mdui-card variant="elevated" class="about-header">
+    <mdui-avatar src="/img/avatar.png" class="about-avatar"></mdui-avatar>
+    <div class="about-title">Arch Linux</div>
+    <div class="about-description">Arch Linux is a lightweight and flexible Linux distribution that tries to Keep It Simple. It is a rolling release distribution, which means that it is constantly updated and does not have a fixed release cycle.</div>
+  </mdui-card>
+  <hr>
+  <%- page.content %>
+  <hr>
+</div>
+
+<script src="/js/code.js"></script>
+<script>
+  const posts = document.querySelector('.navigation-drawer-list-about');
+  posts.active = true;
+</script>

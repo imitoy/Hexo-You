@@ -1,0 +1,29 @@
+.index-header-card {
+    width: 100%;
+    padding: 32px 32px 40px 32px;
+    margin-bottom: 16px;
+    background-color: rgb(var(--mdui-color-primary-container));
+}
+
+.index-header-title {
+    font-size: 56px;
+    font-weight: 400;
+    margin-bottom: 32px;
+    color: rgb(var(--mdui-color-primary));
+}
+
+.index-header-content {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    color: rgb(var(--mdui-color-on-primary-container));
+}
+
+.content-container .card-container{
+    width: calc(100vw - 48px);
+    position: relative;
+}
+
+.index-bottom {
+    margin-bottom: 16px;
+}

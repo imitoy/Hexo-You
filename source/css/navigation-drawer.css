@@ -21,6 +21,12 @@
     position: relative;
 }
 
+.navigation-drawer-header-title {
+    font-size: 28px;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
 .navigation-drawer-avatar {
     width: 64px;
     height: 64px;

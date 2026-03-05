@@ -1,5 +1,5 @@
 <style>
-  @import url('/css/index-header.css');
+  @import url('/css/index.css');
   @import url('/css/post-card.css');
 </style>
 <mdui-card variant="filled" class="index-header-card">
@@ -7,6 +7,7 @@
   <div class="index-header-content">A hexo theme using Material You</div>
 </mdui-card>
 
+<div class="card-container" id="card-container">
 <% site.posts.forEach(function(post){ %>
   <mdui-card variant="elevated" class="post-card">
     <% if(post.cover){ %>
@@ -20,10 +21,10 @@
         <div class="post-card-content post-card-meta"><%- truncate(strip_html(post.content), { length: 200 }) %></div>
       <% } %>
       <div class="post-card-date post-card-meta">
-        <mdui-icon src="icon/calender.svg"></mdui-icon>
+        <mdui-icon src="/icon/calender.svg"></mdui-icon>
         <span><%- date(post.date, "YYYY-MM-DD") %></span>
       </div>
-      <mdui-card class="post-card-forward" href="<%= post.path %>">
+      <mdui-card variant="filled" class="post-card-forward" href="<%= post.path %>">
         <div class="post-card-forward-div">
           <mdui-icon class="post-card-forward-icon" src="icon/arrow-forward.svg"></mdui-icon>
         </div>
@@ -31,3 +32,15 @@
     </div>
   </mdui-card>
 <% }); %>
+</div>
+
+<hr>
+<div class="index-bottom">
+  <mdui-chip>C 2025 Hexo You</mdui-chip>
+</div>
+
+<script>
+  const home = document.querySelector('.navigation-drawer-list-home');
+  home.active = true;
+</script>
+<script src="/js/page.js"></script>
