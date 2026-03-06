@@ -12,6 +12,18 @@
     color: rgb(var(--mdui-color-on-secondary-container));
 }
 
+@media (max-width: 600px) {
+    .content .post-header-title {
+        font-size: 56px;
+    }
+}
+
+@media (max-width: 400px) {
+    .content .post-header-title {
+        font-size: 48px;
+    }
+}
+
 .content .post-header-date {
     display: flex;
     align-items: center;
