@@ -46,7 +46,7 @@ document.addEventListener('pjax:complete', function() {
       <mdui-button-icon class="navigation-drawer-button" variant="text">
         <mdui-icon src="/icon/menu.svg"></mdui-icon>
       </mdui-button-icon>
-      <mdui-top-app-bar-title>Arch Linux's Blog</mdui-top-app-bar-title>
+      <mdui-top-app-bar-title><%= config.title %></mdui-top-app-bar-title>
       <div style="flex-grow: 1"></div>
       <mdui-button-icon>
         <mdui-icon src="/icon/search.svg"></mdui-icon>
@@ -57,9 +57,21 @@ document.addEventListener('pjax:complete', function() {
       <div class="navigation-drawer-container">
       <div class="navigation-drawer-header">
         <mdui-avatar src="/img/avatar.png" class="navigation-drawer-avatar"></mdui-avatar>
-        <div class="navigation-drawer-header-title">Arch Linux</div>
-        <div class="navigation-drawer-header-subtitle">Arch is the best!</div>
+        <div class="navigation-drawer-header-title"><%= config.title %></div>
+        <div class="navigation-drawer-header-subtitle"><%= config.slogan %></div>
       </div>
+      <!--% if (config.menu && config.menu.length > 0) { %>
+        <mdui-list class="navigation-drawer-list">
+          <% config.menu.forEach(function(item){ %>
+            <mdui-list-item rounded href="<%- item.url %>" class="navigation-drawer-list-<%- item.id %>">
+              <%= item.name %>
+              <% if (item.icon) { %>
+                <mdui-icon src="<%- item.icon %>" slot="icon"></mdui-icon>
+              <% } %>
+            </mdui-list-item>
+          <% }) %>
+        </mdui-list>
+      <% } %-->
       <mdui-list class="navigation-drawer-list">
         <mdui-list-item rounded href="/" class="navigation-drawer-list-home">
           Home

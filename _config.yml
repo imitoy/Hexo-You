@@ -1,0 +1,61 @@
+# name: your name, displayed in the header and the sidebar.
+# NOTICE: If you want to display a different name in the sidebar, you can set `sidebar_name` in the front-matter of the page or post.
+name: Hexo You
+
+# slogan: a brief description of your blog, displayed in the header and the sidebar. You can use it to introduce your blog or yourself.
+slogan: A simple and elegant Hexo theme.
+
+# description
+description: Hiiiiiiiii!
+
+index-description: Hexo You is a Hexo theme themed with Material You (Material Design 3).
+
+# github: your GitHub profile URL, displayed in the sidebar. You can set it to an empty string if you don't want to display it.
+github: https://github.com/
+
+# avatar: the URL of your avatar image, displayed in the sidebar. You can set it to an empty string if you don't want to display it. It is recommended to use a square image with a size of at least 200x200 pixels for better display quality.
+avatar: /images/avatar.png
+
+# language: the language of your blog. It seems to have no effect on the theme.
+language: en
+
+# title: the title of your blog, displayed in the title tag of the page. It is recommended to set it to the same value as `name` for better SEO.
+title: Hexo You's Blog
+
+# Menu of the navigation bar. You can add more items as you like.
+menu:
+
+  # Here is an example of a menu item. You can add more items by following this format.
+
+  # name: The name of the menu item. It will be displayed in the navigation bar.
+  - name: Home
+
+  # url: The URL of the menu item. It can be an absolute URL or a relative URL. If it is a relative URL, it will be resolved based on the root URL of the blog.
+    url: /
+
+  # icon: The icon of the menu item. It can be an absolute URL or a relative URL. If it is a relative URL, it will be resolved based on the root URL of the blog.
+    icon: /icons/home.svg
+
+  # id: The unique identifier of the menu item. It can be used for styling or scripting purposes.
+    id: home
+  - name: Posts
+    url: /archives/
+    icon: /icons/article.svg
+    id: posts
+
+    # page: includes name and description which will be displayed on the top of the page. Delete it if you don't want to display the top card.
+    page:
+      - name: Posts
+        description: All posts of the blog.
+
+  - name: Tags
+    url: /tags/
+    icon: /icons/tags.svg
+    id: tags
+    page:
+      - name: Tags
+        description: All tags of the blog.
+  - name: About
+    url: /about/
+    icon: /icons/person.svg
+    id: about
