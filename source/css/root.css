@@ -2,6 +2,8 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Google Sans', sans-serif;
+    scrollbar-color: rgb(var(--mdui-color-tertiary)) transparent;
+    scrollbar-width: thin;
 }
 
 .root {

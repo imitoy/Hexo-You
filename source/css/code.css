@@ -3,6 +3,8 @@
     border-radius: 21px;
     padding: 8px;
     background-color: rgb(var(--mdui-color-surface-container-high));
+    overflow-x: auto;
+    scrollbar-width: none;
 }
 
 .content .highlight .code {

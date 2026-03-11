@@ -142,3 +142,38 @@
 .content > table tr:not(:last-of-type) > td {
     border-bottom: 1px solid rgb(var(--mdui-color-outline));
 }
+
+.comment-block {
+    display: flex;
+    align-items: flex-start;
+    margin: 24px 0;
+}
+
+.comment-block .comment-avatar {
+    width: 64px;
+    height: 64px;
+    margin-right: 16px;
+    background-color: rgb(var(--mdui-color-secondary-container));
+}
+
+.comment-block .comment-right-area {
+    flex: 1;
+}
+
+.comment-block .comment-nick-name {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0 0 8px 0;
+    color: rgb(var(--mdui-color-tertiary));
+}
+
+.comment-block p {
+    margin: 2px 0;
+}
+
+.comment-input {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 32px;
+}

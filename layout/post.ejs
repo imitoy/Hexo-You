@@ -3,6 +3,10 @@
   @import url('/css/code.css');
 </style>
 
+<mdui-snackbar class="snackbar-network-error">Network error</mdui-snackbar>
+<mdui-snackbar class="snackbar-comment-success">Comment submitted successfully</mdui-snackbar>
+<mdui-snackbar class="snackbar-comment-failure">Failed to submit comment</mdui-snackbar>
+
 <div class="content">
   <mdui-card variant="elevated" class="post-header">
     <% if(page.cover){ %>
@@ -19,9 +23,21 @@
   <hr>
   <%- page.content %>
   <hr>
+  <div class="comment-input">
+    <mdui-text-field id="comment-nick" label="Nick Name" variant="outlined" max-rows="1"></mdui-text-field>
+    <mdui-text-field id="comment-email" label="Email" variant="outlined" max-rows="1"></mdui-text-field>
+    <mdui-text-field id="comment-website" label="Website (optional)" variant="outlined" max-rows="1"></mdui-text-field>
+    <mdui-text-field id="comment-content" label="Comment" variant="outlined" max-rows="4" autosize></mdui-text-field>
+    <mdui-button id="comment-submit-button" variant="filled">Submit</mdui-button>
+  </div>
+  <h3 class="comment-section-title">Comments</h3>
+  <mdui-list id="comments-container" class="comment-list">
+    <!-- Comments will be loaded here -->
+  </mdui-list>
 </div>
 
 <script src="/js/code.js"></script>
+<script src="/js/comment.js"></script>
 <script>
   const posts = document.querySelector('.navigation-drawer-list-posts');
   posts.active = true;
