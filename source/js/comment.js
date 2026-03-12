@@ -147,8 +147,27 @@ document.getElementById('comment-submit-button').addEventListener('click', () =>
     document.getElementById('comment-website').disabled = true;
     document.getElementById('comment-content').disabled = true;
 
+    // 检查是否必填项为空
+
+    if (!nick) {
+        document.getElementById('comment-nick').innerHTML = '<span slot="helper" style="color: rgb(var(--mdui-color-error))">This field is required</span>';
+    }
+
+    if (!email) {
+        document.getElementById('comment-email').innerHTML = '<span slot="helper" style="color: rgb(var(--mdui-color-error))">This field is required</span>';
+    }
+
+    if (!content) {
+        document.getElementById('comment-content').innerHTML = '<span slot="helper" style="color: rgb(var(--mdui-color-error))">This field is required</span>';
+    }
+
     if (!nick || !email || !content) {
         document.querySelector('.snackbar-comment-failure').show = true;
+        // 恢复输入框状态
+        document.getElementById('comment-nick').disabled = false;
+        document.getElementById('comment-email').disabled = false;
+        document.getElementById('comment-website').disabled = false;
+        document.getElementById('comment-content').disabled = false;
         return;
     }
 
