@@ -3,6 +3,19 @@ hexo.extend.helper.register('getArchivesByYear', function() {
     return posts;
 });
 
+hexo.extend.helper.register('getArchiveYears', function() {
+    const posts = this.site.posts.sort('date', -1); // 按时间倒序
+    const data = {};
+
+    posts.forEach(post => {
+        const year = post.date.year();
+        if (!data[year]) data[year] = [];
+        data[year].push(post);
+    });
+
+    return data; // 返回一个以年份为 Key 的对象
+});
+
 // Tag Helper
 /*
 hexo.extend.helper.register('getTags', function() {

@@ -7,7 +7,7 @@
   <div class="header-content">All posts of the blog</div>
 </mdui-card>
 
-<% const archives = getArchivesByYear(); %>
+<% const archives = getArchiveYears(); %>
 
 <% Object.keys(archives).reverse().forEach(year => { %>
   <h1 class="posts-year"><%= year %></h1>
