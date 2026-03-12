@@ -8,7 +8,7 @@
 </mdui-card>
 
 <div class="card-container" id="card-container">
-<% site.posts.forEach(function(post){ %>
+<% getArchivesByYear().forEach(function(post){ %>
   <mdui-card variant="elevated" class="post-card">
     <% if(post.cover){ %>
       <img src="<%= post.cover %>" alt="<%= post.title %>" class="post-card-cover post-card-meta"></image>
