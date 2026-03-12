@@ -168,6 +168,10 @@ document.getElementById('comment-submit-button').addEventListener('click', () =>
         document.getElementById('comment-email').disabled = false;
         document.getElementById('comment-website').disabled = false;
         document.getElementById('comment-content').disabled = false;
+
+        // 恢复按钮状态
+        comment_submit_button.disabled = false;
+        comment_submit_button.loading = false;
         return;
     }
 
