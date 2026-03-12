@@ -1,5 +1,5 @@
 hexo.extend.helper.register('getArchivesByYear', function() {
-    const posts = this.site.posts.sort('date', -1); // 按时间倒序
+    const posts = this.site.posts.sort('date', 1); // 按时间倒序
     const data = {};
 
     posts.forEach(post => {
