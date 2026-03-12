@@ -1,11 +1,12 @@
 const url = window.location.pathname; // 当前页面的路径，用于区分不同文章
+const comment_submit_button = document.getElementById('comment-submit-button');
 
 function showNetworkErrorSnackbar() {
-  document.querySelector('.snackbar-network-error').show = true;
+    document.querySelector('.snackbar-network-error').show = true;
 }
     
 function showCommentFailureSnackbar() {
-  document.querySelector('.snackbar-comment-failure').show = true;
+    document.querySelector('.snackbar-comment-failure').show = true;
 }
 
 async function getCommentsCount() {
@@ -58,6 +59,7 @@ async function loadComments() {
                 `;
                 commentsContainer.appendChild(commentElement);
             });
+
             /*result.data.data.forEach(comment => {
                 const commentElement = document.createElement('div');
                 commentElement.classList.add('comment');
@@ -131,10 +133,19 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.getElementById('comment-submit-button').addEventListener('click', () => {
+    comment_submit_button.disabled = true; // 禁用按钮，防止重复提交
+    comment_submit_button.loading = true; // 显示加载状态
+
     const nick = document.getElementById('comment-nick').value.trim();
     const email = document.getElementById('comment-email').value.trim();
     const website = document.getElementById('comment-website').value.trim();
     const content = document.getElementById('comment-content').value.trim();
+
+    // 临时禁用输入框，防止重复提交
+    document.getElementById('comment-nick').disabled = true;
+    document.getElementById('comment-email').disabled = true;
+    document.getElementById('comment-website').disabled = true;
+    document.getElementById('comment-content').disabled = true;
 
     if (!nick || !email || !content) {
         document.querySelector('.snackbar-comment-failure').show = true;
@@ -151,7 +162,25 @@ document.getElementById('comment-submit-button').addEventListener('click', () =>
     };
 
     submitComment(commentData).then(() => {
-        // 提交成功后，重新加载评论列表
-        loadComments();
+        getCommentsCount().then(count => {
+            const commentSectionTitle = document.querySelector('.comment-section-title');
+            if (commentSectionTitle) {
+                commentSectionTitle.textContent = `${count} Comment` + (count !== 1 ? 's' : '');
+            }
+        });
+        loadComments().then(() => {
+            // 提交成功后清空输入框，并恢复按钮和输入框状态
+            comment_submit_button.disabled = false;
+            comment_submit_button.loading = false;
+
+            document.getElementById('comment-nick').value = '';
+            document.getElementById('comment-email').value = '';
+            document.getElementById('comment-website').value = '';
+            document.getElementById('comment-content').value = '';
+            document.getElementById('comment-nick').disabled = false;
+            document.getElementById('comment-email').disabled = false;
+            document.getElementById('comment-website').disabled = false;
+            document.getElementById('comment-content').disabled = false;
+        });
     });
 });
