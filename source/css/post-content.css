@@ -31,6 +31,13 @@
     color: rgb(var(--mdui-color-on-tertiary-container));
 }
 
+.content .post-header-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+}
+
 .content .post-header-date .post-header-date-icon {
     font-size: 16px;
     color: rgb(var(--mdui-color-on-tertiary-container));

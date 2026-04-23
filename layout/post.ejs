@@ -20,6 +20,24 @@
       </div>
     </div>
   </mdui-card>
+  <div class="post-header-chips">
+    <% if (page.categories && page.categories.length) { %>
+      <% page.categories.forEach(function(cat){ %>
+        <mdui-chip rounded href="<%- url_for(cat.path) %>" class="post-chip-category">
+          <mdui-icon src="/icon/category.svg" slot="icon"></mdui-icon>
+          <%= cat.name %>
+        </mdui-chip>
+      <% }) %>
+    <% } %>
+    <% if (page.tags && page.tags.length) { %>
+      <% page.tags.forEach(function(tag){ %>
+        <mdui-chip rounded href="<%- url_for(tag.path) %>" class="post-chip-tag">
+          <mdui-icon src="/icon/tag.svg" slot="icon"></mdui-icon>
+          <%= tag.name %>
+        </mdui-chip>
+      <% }) %>
+    <% } %>
+  </div>
   <hr>
   <%- page.content %>
   <hr>

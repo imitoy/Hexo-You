@@ -1,9 +1,10 @@
-const content = document.querySelector('.content-container');
-
 function layoutWaterfall() {
     const container = document.querySelector('.card-container');
     const items = document.querySelectorAll('.card-container .post-card');
-    //const windowWidth = container.offsetWidth;
+    const content = document.querySelector('.content-container');
+    
+    if (!container || !items.length || !content) return;
+
     const windowWidth = content.offsetWidth - 48;
     let column = 1;
     if (windowWidth >= 840) {
@@ -23,7 +24,7 @@ function layoutWaterfall() {
         columnRights[i] = columnLefts[i] + width;
     }
     
-    items.forEach((item, index) => {
+    items.forEach((item) => {
         const minHeight = Math.min(...columnHeights);
         const columnIndex = columnHeights.indexOf(minHeight);
 
@@ -40,11 +41,21 @@ function layoutWaterfall() {
     container.style.height = `${maxHeight + gap}px`;
 }
 
-window.addEventListener('load', layoutWaterfall);
+// 确保每次调用都执行（PJAX 切换到首页时通过 reInitializePlugins 调用）
+// 首次页面加载
+if (document.readyState === 'complete') {
+  layoutWaterfall();
+} else {
+  window.addEventListener('load', layoutWaterfall);
+}
 window.addEventListener('resize', layoutWaterfall);
 
-const resizeObserver = new ResizeObserver(entries => {
+// 监听 content-container 变化（PJAX 替换时触发 ResizeObserver）
+const resizeObserver = new ResizeObserver(function() {
   layoutWaterfall();
 });
 
-resizeObserver.observe(content);
+const contentContainer = document.querySelector('.content-container');
+if (contentContainer) {
+  resizeObserver.observe(contentContainer);
+}

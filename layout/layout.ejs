@@ -10,29 +10,121 @@
   <script src="/js/pjax.min.js"></script>
   <script>
 
-const pjax = new Pjax({
-  selectors: [
-    "title",          // 更新页面标题
-    "#content-container" // 只更新这个 ID 里的内容
-  ],
-  cacheBust: false
-});
+// 重新初始化插件：执行 PJAX 后新内容中的所有内联脚本
+function reInitializePlugins() {
+  const container = document.getElementById('content-container');
+  if (!container) return;
 
-// --- 动画处理 ---
+  // 1. 执行容器内的所有内联 <script>（排除已有 src 的外部脚本，PJAX 会自动处理）
+  const scripts = container.querySelectorAll('script:not([src])');
+  scripts.forEach(function(oldScript) {
+    const newScript = document.createElement('script');
+    newScript.textContent = oldScript.textContent;
+    // 复制 data-* 属性
+    Array.from(oldScript.attributes).forEach(function(attr) {
+      if (attr.name !== 'src') {
+        newScript.setAttribute(attr.name, attr.value);
+      }
+    });
+    oldScript.parentNode.replaceChild(newScript, oldScript);
+  });
 
-// 开始切换页面时：触发淡出
-document.addEventListener('pjax:send', function() {
-  document.getElementById('content-container').style.opacity = '0';
-  document.getElementById('content-container').style.transition = 'opacity 0.3s';
-});
+  // 2. 重新执行 code.js 的逻辑：移除代码块行号列
+  container.querySelectorAll('.highlight .gutter').forEach(function(el) {
+    el.remove();
+  });
 
-// 内容替换完成后：触发淡入
-document.addEventListener('pjax:complete', function() {
-  document.getElementById('content-container').style.opacity = '1';
-  
-  // 重要：由于是 AJAX 加载，新内容里的脚本（如图片懒加载、代码高亮）需要手动重新初始化
-  reInitializePlugins(); 
-});
+  // 3. 如果当前是首页，触发瀑布流布局
+  if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
+    // 双重 requestAnimationFrame 确保在浏览器完成布局后执行
+    requestAnimationFrame(function() {
+      requestAnimationFrame(function() {
+        if (typeof layoutWaterfall === 'function') {
+          layoutWaterfall();
+        }
+      });
+    });
+  }
+
+  // 3. 重新应用导航栏 active 状态
+  updateNavigationActive();
+}
+
+// 根据当前路径更新导航栏 active 状态
+function updateNavigationActive() {
+  const path = window.location.pathname;
+  const items = document.querySelectorAll('.navigation-drawer-list mdui-list-item');
+  items.forEach(function(item) {
+    item.active = item.getAttribute('href') === path;
+  });
+}
+
+// 手动拦截 mdui-chip 和 mdui-list-item 的点击，通过 PJAX 加载
+function isMobile() {
+  return window.innerWidth <= 900;
+}
+
+function attachPjaxToCustomElements(root) {
+  root.querySelectorAll('mdui-chip[href], mdui-list-item[href], mdui-card[href]').forEach(function(el) {
+    if (el._pjaxAttached) return;
+    el._pjaxAttached = true;
+    el.addEventListener('click', function(e) {
+      var href = el.getAttribute('href');
+      if (!href) return;
+      if (!href.startsWith('http://') && !href.startsWith('https://') && !href.startsWith('/')) {
+        href = '/' + href;
+      }
+      if (href === '/' && window.location.pathname === '/') return;
+      if (href.startsWith('http://') || href.startsWith('https://')) return;
+      e.preventDefault();
+      e.stopPropagation();
+      
+      if (window.pjax) {
+        window.pjax.loadUrl(href);
+      } else {
+        window.location.href = href;
+      }
+
+      var nav = document.querySelector('.navigation-drawer');
+      if (nav && isMobile()) {
+        nav.open = false;
+      }
+    });
+  });
+}
+
+// ===== 一次性初始化（PJAX 实例、事件监听器等，只执行一次）=====
+if (typeof window._pjaxInitialized === 'undefined') {
+  window._pjaxInitialized = true;
+
+  window.pjax = new Pjax({
+    selectors: [
+      "title",
+      "#content-container"
+    ],
+    cacheBust: false,
+    debug: false
+  });
+
+  // PJAX 完成后重新绑定自定义元素的点击
+  var origComplete = window.pjax.afterAllSwitches;
+  window.pjax.afterAllSwitches = function() {
+    origComplete.call(window.pjax);
+    attachPjaxToCustomElements(document);
+  };
+
+  // pjax:complete 处理
+  document.addEventListener('pjax:complete', function() {
+    var container = document.getElementById('content-container');
+    reInitializePlugins();
+  });
+
+  // 初始绑定自定义元素
+  document.addEventListener('DOMContentLoaded', function() {
+    attachPjaxToCustomElements(document);
+  });
+  attachPjaxToCustomElements(document);
+}
   </script>
 
   <%- css('css/root.css') %>
@@ -77,14 +169,18 @@ document.addEventListener('pjax:complete', function() {
           Tags
           <mdui-icon src="/icon/tag.svg" slot="icon"></mdui-icon>
         </mdui-list-item>
+        <mdui-list-item rounded href="/categories/" class="navigation-drawer-list-categories">
+          Categories
+          <mdui-icon src="/icon/category.svg" slot="icon"></mdui-icon>
+        </mdui-list-item>
         <mdui-list-item rounded href="/about/" class="navigation-drawer-list-about">
           About
           <mdui-icon src="/icon/person.svg" slot="icon"></mdui-icon>
         </mdui-list-item>
-        <!--mdui-list-item rounded href="/links/" class="navigation-drawer-list-links">
-          Links
-          <mdui-icon src="/icon/link.svg" slot="icon"></mdui-icon>
-        </mdui-list-item-->
+        <mdui-list-item rounded href="/archives/" class="navigation-drawer-list-archives">
+          Archives
+          <mdui-icon src="/icon/archive.svg" slot="icon"></mdui-icon>
+        </mdui-list-item>
       </mdui-list>
       </div>
     </mdui-navigation-drawer>
